@@ -1,0 +1,38 @@
+<!--<div class="container"
+     fxLayout="colum"
+     fxFlexGap="10px">-->
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+
+
+  <div fxFlex>
+    <div>
+      <h3 mat-line align="center"> Lista de Areas</h3>
+      <hr>
+    </div>
+
+    <span class="flex-spacer"></span>
+    <a mat-button (click)="openNewOrganizationForm()"><h2 class="fa fa-user-circle fa-lg"> Nueva Area</h2></a>
+    <div fxLayout="column" fxlayout.gt-sm="row">
+      <div fxFlex="50">
+        <mat-list>
+          <mat-list-item *ngFor=" let organization of organizations">
+
+            <img mat-list-avatar src="../../assets/images/organization_icon.png" alt="{{organization.code}}">
+            <h3 mat-line>{{organization.code}} </h3> <a mat-button (click)="openNewOrganizationForm()"><h2
+            class="fa fa-eye fa-lg"></h2></a><a mat-button (click)="openNewOrganizationForm()"><h2
+            class="fa fa-pencil-square fa-lg"></h2></a> <a mat-button (click)="openNewOrganizationForm()"><h2
+            class="fa fa-minus-square fa-lg"></h2></a> <a mat-button (click)="openNewOrganizationForm()"><h2
+            class="fa fa-trash fa-lg"></h2></a>
+            <h3 mat-line>{{organization.organizationKey}}-{{organization.name}} - {{organization.gestion}}</h3>
+            <h3 mat-line> {{organization.hierarchicalLevelKey}}</h3>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+  </div>
+</div>

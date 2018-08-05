@@ -1,0 +1,25 @@
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+  <div fxFlex>
+    <div>
+      <h3 mat-line align="center"> {{title}}</h3>
+      <hr/>
+    </div>
+
+    <span class="flex-spacer"></span>
+    <a mat-button (click)="openNewTypeContactForm()"><h2 class="fa fa-plus fa-lg"> Nuevo</h2></a>
+    <a mat-button (click)="deleteRowselected()"><h2 class="fa fa-plus fa-lg"> Eliminar</h2></a>
+    <div layout="row" layout-align="center end">
+      <ag-grid-angular style="width: 90%; height: 480px; margin: 20px 50px;" class="ag-theme-blue"
+                       [rowData] = "rowData | async"
+
+                       (gridReady)="onGridReady($event)"
+                       [gridOptions]="gridOptions" (cellValueChanged)="onCellValueChanged($event)">
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>

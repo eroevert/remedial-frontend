@@ -1,0 +1,30 @@
+<mat-toolbar color="warn">
+  <!-- <span><img src="../../assets/images/shlog.png" height=30 width=41></span>-->
+  <a name="home_button" mat-button routerLink="/home"><span class="fa fa-home fa-lg"></span> Home</a>
+  <button name="emp_button" id="emp_button" mat-button routerLink="employees"><span class="fa fa-users fa-lg"></span> Personal</button>
+  <button name="org_button" mat-button routerLink="/organization/0"><span class="fa fa-sitemap fa-lg"></span> Est. Organizacional</button>
+  <a mat-button id="accidentLink" routerLink="/accidents"><span class="fa fa-plus fa-lg"></span> Accidentes</a>
+  <a id="equipos_seguridad" mat-button name ="equipment_button" routerLink="/equipments"><span class="fa  fa-shield fa-lg"></span> Equipos de Seguridad</a>
+  <!--<a mat-button><span class="fa fa-archive fa-lg"></span> Inventario</a>-->
+  <a name="assignment_button" id = "assignment_button" mat-button routerLink="/assignment"><span class="fa fa-wrench fa-lg"></span> Asignación de Equipos</a>
+  <!--<a mat-button><span class="fa  fa-file fa-lg"></span> Reportes</a>x-->
+  <a mat-button routerLink="parametric"><span class="fa  fa-file fa-lg"></span> Parametrizacion</a>
+  <a mat-button routerLink="reportes"><span class="fa  fa-file fa-lg"></span> Reportes</a>
+  <!--<a mat-button routerLink="documenttypes"><span class="fa  fa-file fa-lg"></span> Documenttype</a>-->
+  <a mat-button routerLink="Reporting"><span class="fa  fa-file fa-lg"></span> DWReporte</a>
+  <a mat-button routerLink="/auditory"><span class="fa  fa-file fa-lg"></span> Auditoria</a>
+
+  <a mat-button routerLink="/politics"><span class="fa  fa-file fa-lg"></span> Politicas</a>
+  <span class="flex-spacer"></span>
+  <!-- BEGIN NOTIFICATIONS -->
+  <div class="icon fa fa-bell-o" mat-button [matMenuTriggerFor]="menu">
+    <span class="badge-square">{{notifications.length}}</span>
+  </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="openViewForm(notification)" *ngFor=" let notification of notifications">{{notification.politics.politicsName}}</button>
+  </mat-menu>
+  <!-- END NOTIFICATIONS -->
+  <a mat-button (click)="openLoginForm()" name="login_button"><span class="fa fa-sign-in fa-lg"></span> Login</a>
+</mat-toolbar>
+
+

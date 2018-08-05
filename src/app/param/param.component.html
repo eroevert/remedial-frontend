@@ -1,0 +1,75 @@
+<div>
+  <h2 mat-line align="center"> Modulo de Reportes</h2>
+  <hr>
+</div>
+<div fxFlex>
+  <mat-grid-list cols="6" rowHeight="250px">
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="report-card">
+        <mat-card-header>
+          <div mat-card-avatar><img src="../../assets/images/nivel.png" height="50" width="50"/></div>
+          <mat-card-title><h3>Nivel Academico</h3></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Parametrizacion de los niveles de capacitacion requeridos para un cargo.
+          </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button mat-button [routerLink]="['/academiclevel']">Ver Datos</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="report-card">
+        <mat-card-header>
+          <div mat-card-avatar><img src="../../assets/images/contact.jpg" height="50" width="50"/></div>
+          <mat-card-title><h3>Tipo de Contacto</h3></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Tipos de contacto de un empleado, telefono, correo, direccion, otros.
+          </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button [routerLink]="['/typecontact']">Ver Datos</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="report-card">
+        <mat-card-header>
+          <div mat-card-avatar><img src="../../assets/images/accident.png" height="50"
+                                                              width="50"/></div>
+          <mat-card-title><h3>Tipo de Accidente</h3></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Clasificacion de los accidente en diferentes tipo y sub tipos.
+          </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button [routerLink]="['/accidenttype']">Ver Datos</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="report-card">
+        <mat-card-header>
+          <div mat-card-avatar><img src="../../assets/images/contract.jpg" height="50" width="50"/></div>
+          <mat-card-title><h3>Tipo de Contrato</h3></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Parametrizacion de los diferentes tipos de contrato: planta, eventual, consultor, otros.
+          </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button [routerLink]="['/typecontract']">Ver Datos</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+  </mat-grid-list>
+</div>

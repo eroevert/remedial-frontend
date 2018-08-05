@@ -1,0 +1,27 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+  <div fxFlex>
+    Tipo de Equipo
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex  align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+<mat-dialog-content>
+  <h3> Tipo de Equipo</h3>
+  <mat-card id="nameTipo">{{equipmentTypeSelected.name}}</mat-card>
+  <mat-divider></mat-divider>
+  <h3>Codigo de tipo de Equipo:</h3>
+  <mat-card>{{equipmentTypeSelected.equipmentTypeKey}}</mat-card>
+  <mat-divider></mat-divider>
+  <h3>Descripcion del equipo:</h3>
+  <mat-card>{{equipmentTypeSelected.description}}</mat-card>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <span class="flex-spacer"></span>
+  <button id="cerrartipo" mat-button mat-dialog-close mat-button class="background-primary text-floral-white" >Cerrar</button>
+</mat-dialog-actions>
+
+
+

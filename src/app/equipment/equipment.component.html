@@ -1,0 +1,36 @@
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+
+  <div fxFlex>
+    <div>
+      <h3 mat-line align="center"> Lista de Equipos e Indumentarias de Seguridad</h3>
+      <hr>
+    </div>
+
+    <span class="flex-spacer"></span>
+
+      <a id="nuevo_equipo" mat-button (click)="openNewEquipmentForm()"><h2 class="fa fa-pencil-square fa-lg"> Nuevo Registro de Equipos</h2></a>
+    <span class="flex-spacer"></span>
+    <a id="Show_tipo_equipos" mat-button routerLink="/equipmentTypes" name="equipmentType"><h2 class="fa fa-eye fa-lg">Ver tipos de Equipos registrados</h2></a>
+
+    <div fxLayout="column" fxlayout.gt-sm="row">
+      <div fxFlex="50">
+        <mat-list>
+          <mat-list-item *ngFor=" let equipment of equipments?.object">
+
+            <h3 mat-line>{{equipment.name}} </h3>
+            <a mat-button (click)="openViewForm(equipment)"><h2 class="fa fa-eye fa-lg"></h2></a>
+            <a mat-button (click)="openEditForm(equipment)"><h2 class="fa fa-pencil-square fa-lg"></h2></a>
+            <a mat-button (click)="deleteEquipment(equipment.equipmentKey)"><h2 class="fa fa-trash fa-lg"></h2></a>
+
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+  </div>
+
+</div>

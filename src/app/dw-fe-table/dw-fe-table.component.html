@@ -1,0 +1,84 @@
+<div align="center">
+  <h1> REPORTE TABULAR </h1>
+</div>
+<div class="flex-grid">
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+</div>
+<div class="flex-grid">
+  <div class="col">
+    <mat-form-field>
+      <mat-select placeholder="Dimension" [(ngModel)]="selectedValue" (change)="getdatareporting(selectedValue)">
+        <mat-option *ngFor="let dimension of dimensiones" [value]="dimension.value">
+          {{ dimension.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field>
+      <mat-select placeholder="GestionIni" [(ngModel)]="selectedGesIni">
+        <mat-option *ngFor="let gestion of gestion" [value]="gestion">
+          {{ gestion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field>
+      <mat-select placeholder="GestionFin" [(ngModel)]="selectedGesFin">
+        <mat-option *ngFor="let gestion of gestion" [value]="gestion">
+          {{ gestion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="col">
+    <button mat-button (click)="getdatareportingrang(selectedValue,selectedGesIni,selectedGesFin)"><h2
+      class="fa fa-search fa-lg"> Buscar</h2></button>
+
+  </div>
+</div>
+<div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+<div>
+  <mat-table [dataSource]="dataSource">
+    <!-- Dimension Column -->
+    <ng-container matColumnDef="Nro">
+      <mat-header-cell *matHeaderCellDef>Nro</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.dimkey}}</mat-cell>
+    </ng-container>
+
+    <!-- Dimension Column -->
+    <ng-container matColumnDef="Dimension">
+      <mat-header-cell *matHeaderCellDef>Dimension</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.dimension}}</mat-cell>
+    </ng-container>
+
+    <!-- NroIncidentes Column -->
+    <ng-container matColumnDef="NroIncidentes">
+      <mat-header-cell *matHeaderCellDef>NroIncidentes</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nroIncidentes}}</mat-cell>
+    </ng-container>
+
+    <!-- Gestion Column -->
+    <ng-container matColumnDef="Gestion">
+      <mat-header-cell *matHeaderCellDef>Gestion</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.gestion}}</mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50,100]" showFirstLastButtons></mat-paginator>
+</div>
+
+<div>
+  <app-dw-fe-chart></app-dw-fe-chart>
+</div>

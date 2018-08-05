@@ -1,0 +1,160 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="warn">
+  <div fxFlex>
+    Asignar Item
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+
+<form novalidate #positionhistoricaltForm="ngForm">
+  <mat-dialog-content>
+
+    <input matInput placeholder="historialCargoId" type="number" [(ngModel)]="positionHistorical.historialCargoId"
+           name=" historialCargoId" [value]="" hidden>
+    <input matInput placeholder="employeeKey" type="number" [(ngModel)]="positionHistorical.employeeKey"
+           name=" employeeKey" [value]="employeeselec.employeeKey" hidden>
+
+    <p>
+      <label class="labels">
+        Item
+      </label>
+      <mat-input-container dividerColor="{{itemKey.invalid && !itemKey.pristine ? 'warn' : 'primary'}}">
+        <mat-select placeholder="Nivel Jerarquico" [(ngModel)]="positionHistorical.itemKey" name="itemKey" #itemKey="ngModel">
+          <mat-option *ngFor="let itm of items" [value]="itm.itemKey">
+            Item: {{itm.itemNumber}} - {{itm.positionByPositionKey.name}}
+          </mat-option>
+        </mat-select>
+        <mat-hint>
+         <span [hidden]="itemKey.pristine">
+         <span [hidden]="!itemKey.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+
+    </p>
+
+    <p>
+      <label class="labels">
+        Numero de Memo:
+      </label>
+      <mat-input-container dividerColor="{{memoNumber.invalid && !memoNumber.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="MemoNumber" type="text" [(ngModel)]="positionHistorical.memoNumber"
+               name="memoNumber"
+               #memoNumber="ngModel" required>
+        <mat-hint>
+         <span [hidden]="memoNumber.pristine">
+         <span [hidden]="!memoNumber.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+    </p>
+
+    <p>
+      <label class="labels">
+        Fecha de Inicio:
+      </label>
+      <mat-input-container dividerColor="{{start.invalid && !start.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="start" type="date" [(ngModel)]="positionHistorical.start" name="start"
+               #start="ngModel" required>
+        <mat-hint>
+         <span [hidden]="start.pristine">
+         <span [hidden]="!start.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+    </p>
+
+    <p><label class="labels">
+      fecha de Finalizacion:
+    </label>
+      <mat-input-container dividerColor="{{end.invalid && !end.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="end" type="date" [(ngModel)]="positionHistorical.end" name="end"
+               #end="ngModel" required>
+        <mat-hint>
+         <span [hidden]="end.pristine">
+         <span [hidden]="!end.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+    </p>
+
+    <p>
+      <mat-list-item>
+        <label class="labels">
+          Estado:
+        </label>
+        <mat-input-container>
+          <mat-select placeholder=" starus" [(ngModel)]="positionHistorical.status" name="status" required>
+            <mat-option *ngFor="let gen of statuslist" [value]="gen.codigo">
+              {{gen.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-input-container>
+      </mat-list-item>
+    </p>
+
+    <p>
+      <label class="labels">
+        Codigo Codigo de responsable:
+      </label>
+      <mat-input-container dividerColor="{{responsibleKey.invalid && !responsibleKey.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="responsibleKey" type="text" [(ngModel)]="positionHistorical.responsibleKey"
+               name="responsibleKey"
+               #responsibleKey="ngModel" required>
+        <mat-hint>
+                 <span [hidden]="responsibleKey.pristine">
+                 <span [hidden]="!responsibleKey.errors?.required">(Este campo es obligatorio)</span>
+                 </span>
+        </mat-hint>
+      </mat-input-container>
+    </p>
+
+    <p>
+      <label class="labels">
+        Fecha de Aprobacion:
+      </label>
+      <mat-input-container dividerColor="{{approvalDate.invalid && !approvalDate.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="approvalDate" type="date" [(ngModel)]="positionHistorical.approvalDate"
+               name="approvalDate"
+               #approvalDate="ngModel" required>
+        <mat-hint>
+               <span [hidden]="approvalDate.pristine">
+               <span [hidden]="!approvalDate.errors?.required">(Este campo es obligatorio)</span>
+               </span>
+        </mat-hint>
+      </mat-input-container>
+    </p>
+
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+
+    <button type="reset" mat-button mat-dialog-close>Cancelar</button>
+    <button type="submit" mat-button class="background-primary text-floral-white"
+            [disabled]="positionhistoricaltForm.form.invalid" (click)="create()"
+            *ngIf="!positionHistorical.historialCargoId else elseblock">Guardar
+    </button>
+    <ng-template #elseblock>
+      <button type="button" mat-button class="background-primary text-floral-white"
+              [disabled]="positionhistoricaltForm.form.invalid" (click)=" actualizarPositionalHistorical()">Actualizar
+      </button>
+    </ng-template>
+  </mat-dialog-actions>
+
+</form>
+
+
+<!--
+<button type="button" mat-button class="background-primary text-floral-white"
+                    [disabled]="employeetForm.form.invalid" (click)="create()"
+                    *ngIf="!employee.employeeKey else elseblock">Guardar
+            </button>
+            <ng-template #elseblock>
+              <button type="button" mat-button class="background-primary text-floral-white"
+                      [disabled]="employeetForm.form.invalid" (click)="actualizarEmployee()">Actualizar
+              </button>
+            </ng-template>
+-->

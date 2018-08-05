@@ -1,0 +1,53 @@
+    <mat-form-field fxLayoutAlign="center">
+          <mat-select placeholder="SELECCION UN REPORTE" [(ngModel)]="selectedValue" name="employee">
+
+            <mat-option *ngFor="let report of empleados" [value]="report.value">
+              {{ report.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-hint>value: {{selectedValue}}</mat-hint>
+    </mat-form-field>
+<!--<div class="container"
+     fxLayout="colum"
+     fxFlexGap="10px">-->
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+  <div fxFlex>
+    <div>
+      <h3 mat-line align="center"> Lista de Empleados</h3>
+      <hr>
+    </div>
+  </div>
+</div>
+<div class="table mat-elevation-z8">
+
+  <table *ngIf="2>0;else emptyList " mat-table #table>
+    <thead>
+    <tr fxFlex="center">
+      <th mat-header-cell >Codigo Empleado</th>
+      <th mat-header-cell >Nombre</th>
+      <th mat-header-cell >Apellido</th>
+      <th mat-header-cell >Genero</th>
+      <th mat-header-cell >Nacionalidad</th>
+      <th mat-header-cell >Fecha de Ingreso</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr mat-cell *ngFor="let emp of employees" fxFlex="center">
+      <td>{{ emp.employeeCode }}</td>
+      <td>{{ emp.firstName }}</td>
+      <td>{{ emp.lastName }}</td>
+      <td>{{ emp.gender }}</td>
+      <td>{{ emp.nationality }}</td>
+      <td>{{ emp.registrationDate }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <ng-template #emptyList>
+    <h3>No operations yet.</h3>
+  </ng-template>
+</div>

@@ -1,0 +1,61 @@
+<div>
+  <h2 mat-line align="center"> Modulo de Reportes</h2>
+  <hr>
+</div>
+<div fxFlex>
+  <mat-grid-list cols="5" rowHeight="350px">
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="report-card">
+        <mat-card-header>
+          <div mat-card-avatar class="org-header-image"></div>
+          <mat-card-title><h3>Estructura Organizacional</h3></mat-card-title>
+        </mat-card-header>
+        <img src="../../assets/images/org.png" height="100" width="184"/>
+        <mat-card-content>
+          <p>
+            Reporte de la estructura organizacional de la empresa.
+          </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button>Ver Reporte</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="report-card">
+        <mat-card-header>
+          <div mat-card-avatar class="inv-header-image"></div>
+          <mat-card-title><h3>Equipos de seguridad</h3></mat-card-title>
+        </mat-card-header>
+        <img src="../../assets/images/seguridad.jpg" height="100" width="184"/>
+        <mat-card-content>
+          <p>
+            Reporte de inventarios de equipos de seguridad.
+          </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button [routerLink]="['/inventoryreport']">Ver Reporte</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="report-card">
+        <mat-card-header>
+          <div mat-card-avatar class="asig-header-image"></div>
+          <mat-card-title><h3>Asignacion de Equipos de seguridad</h3></mat-card-title>
+        </mat-card-header>
+        <img src="../../assets/images/asignacion.jpg" height="100" width="184"/>
+        <mat-card-content>
+          <p>
+            Reporte de la asignacion de equipos de seguridad a los empleados de la empresa.
+          </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button>Ver Reporte</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+  </mat-grid-list>
+</div>

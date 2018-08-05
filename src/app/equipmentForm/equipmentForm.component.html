@@ -1,0 +1,83 @@
+
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary" disabled="true">
+  <div fxFlex>
+    Nuevo Registro
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div id="cerrar" fxFlex  align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+<form  id="formulario" novalidate #equipmentForm="ngForm" (ngSubmit)="create()" disabled="false">
+  <mat-dialog-content>
+    <p>
+      <mat-input-container  dividerColor="{{name.invalid && !name.pristine ? 'warn' : 'primary'}}">
+        <input id="eqiposIndumentarias1" matInput placeholder="Equipo o Indumentaria" type="text" [(ngModel)]="equipment.name" name="equipos" #name="ngModel" required>
+        <mat-hint>
+         <span [hidden]="name.pristine">
+         </span>
+        </mat-hint>
+      </mat-input-container>
+    </p>
+    <p>
+      <mat-input-container id="TipoEquipo"
+        dividerColor="{{equipmentTypeKey.invalid && !equipmentTypeKey.pristine ? 'warn' : 'primary'}}">
+        <mat-select id="TipoEquipo1" placeholder="Tipo de equipo" [(ngModel)]="equipment.equipmentTypeKey" name="equipmentTypeKey"
+                    #equipmentTypeKey="ngModel">
+          <mat-option *ngFor="let equipmentType of equipmentType" [value]="equipmentType.equipmentTypeKey">
+            {{equipmentType.name}}
+          </mat-option>
+        </mat-select>
+        <mat-hint>
+         <span [hidden]="equipmentTypeKey.pristine">
+         <span [hidden]="!equipmentTypeKey.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+
+      <!-- <mat-form-field class="example-full-width">
+        <input matInput placeholder="Tipo de Equipo" aria-label="tipoEquipo" [(ngModel)]="equipment.equipmentTypeKey"
+               [matAutocomplete]="autoEquipment" name="equipment" required>
+        <mat-autocomplete #autoEquipment="matAutocomplete">
+          <mat-option *ngFor="let equipmentType of filteredEquipmentType | async" [value]="equipmentType.equipmentTypeKey">
+            <span>{{equipmentType.name}}</span> |
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>-->
+      <!--<mat-input-container dividerColor="{{description.invalid && !description.pristine ? 'warn' : 'primary'}}" required>
+        <mat-select placeholder="Tipo de Equipo" [(ngModel)]="equipment.equipmentTypeKey" name="equipmentTypeKey">
+          <mat-option *ngFor="let tipos of equipmentType" [value]="tipos.equipmentTypeKey">
+            {{tipos.name}}
+          </mat-option>
+        </mat-select>
+      </mat-input-container>-->
+    </p>
+    <p>
+      <mat-input-container id="EstadoEquipo" dividerColor="{{status.invalid && !description.pristine ? 'warn' : 'primary'}}">
+        <mat-select id="EstadoEquipo1" placeholder="Estado del Equipo" [(ngModel)]="equipment.status" name="status" #status="ngModel">
+          <mat-option id="habilitado" value="habilitado">Habilitado</mat-option>
+          <mat-option id="desabilitado" value="deshabilitado">Deshabilitado</mat-option>
+        </mat-select>
+      </mat-input-container>
+    </p>
+    <p>
+      <mat-input-container dividerColor="{{description.invalid && !description.pristine ? 'warn' : 'primary'}}">
+        <textarea id="Descripcion" matInput placeholder="Descripci&oacute;n" [(ngModel)]="equipment.description" name="description" #description="ngModel" >
+        </textarea>
+        <mat-hint>
+         <span [hidden]="description.pristine">
+         </span>
+        </mat-hint>
+      </mat-input-container>
+    </p>
+ </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <div id="cancelar">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    </div>
+    <div id="crear">
+    <button type="submit" mat-button class="background-primary text-floral-white"  [disabled]="equipmentForm.form.invalid" >Crear</button>
+    </div>
+  </mat-dialog-actions>
+</form>

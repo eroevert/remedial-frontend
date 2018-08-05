@@ -1,0 +1,58 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+  <div fxFlex>
+    Crear Item
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex  align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+
+<form novalidate #itemForm="ngForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <input hidden matInput placeholder="itemKey" [(ngModel)]="item.itemKey" [ngModelOptions]="{standalone: true}">
+    <p>
+      <mat-input-container dividerColor="{{code.invalid && !code.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="codigo" type="text" [(ngModel)]="item.code" name="code" #code="ngModel"  required>
+        <mat-hint>
+         <span [hidden]="code.pristine">
+         <span [hidden]="!code.errors?.required">code is required</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+      <mat-input-container dividerColor="{{cityKey.invalid && !cityKey.pristine ? 'warn' : 'primary'}}">
+        <mat-select placeholder="Ciudad" [(ngModel)]="item.cityKey" name="cityKey" #cityKey="ngModel">
+          <mat-option *ngFor="let city of cities" [value]="city.cityKey">
+            {{city.name}}
+          </mat-option>
+        </mat-select>
+      </mat-input-container>
+      <mat-input-container dividerColor="{{positionKey.invalid && !positionKey.pristine ? 'warn' : 'primary'}}">
+        <mat-select placeholder="Posicion" [(ngModel)]="item.positionKey" name="positionKey" #positionKey="ngModel">
+          <mat-option *ngFor="let posi of positions" [value]="posi.positionKey">
+            {{posi.name}}
+          </mat-option>
+        </mat-select>
+      </mat-input-container>
+      <mat-input-container dividerColor="{{salaryScaleKey.invalid && !salaryScaleKey.pristine ? 'warn' : 'primary'}}">
+        <mat-select placeholder="Escala Salarial" [(ngModel)]="item.salaryScaleKey" name="salaryScaleKey" #salaryScaleKey="ngModel">
+          <mat-option *ngFor="let salary of salaryScales" [value]="salary.salaryScaleKey">
+            {{salary.name}} - {{salary.currencyByCurrencyKey.code}} {{salary.basicSalary}}
+          </mat-option>
+        </mat-select>
+      </mat-input-container>
+      <mat-input-container dividerColor="{{typeContractKey.invalid && !typeContractKey.pristine ? 'warn' : 'primary'}}">
+        <mat-select placeholder="Tipo Contrato" [(ngModel)]="item.typeContractKey" name="typeContractKey" #typeContractKey="ngModel">
+          <mat-option *ngFor="let contr of typesContract" [value]="contr.typeContractKey">
+            {{contr.name}}
+          </mat-option>
+        </mat-select>
+      </mat-input-container>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button name="save_new_item" type="submit" mat-button class="background-primary text-floral-white"  [disabled]="itemForm.form.invalid" >Crear</button>
+  </mat-dialog-actions>
+</form>

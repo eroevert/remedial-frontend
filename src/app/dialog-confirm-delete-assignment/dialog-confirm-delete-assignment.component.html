@@ -1,0 +1,17 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary" >
+  <div fxFlex>
+    Confirmar eliminación
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex  align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+<mat-dialog-content>
+  <h5>Esta seguro de eliminar la asignación de equipo?</h5>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close name="Cancel">Cancelar</button>
+  <button mat-button mat-button class="background-primary text-floral-white" name="Accept" (click)="confirmar()">Aceptar</button>
+</mat-dialog-actions>

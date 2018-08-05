@@ -1,0 +1,29 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+  <div fxFlex>
+    Crear  Tipo Contacto
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex  align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+
+<form novalidate #typeContactForm="ngForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <p>
+      <mat-input-container dividerColor="{{name.invalid && !name.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="Descripcion" type="text" [(ngModel)]="typeContact.name" name="name" #name="ngModel" required>
+        <mat-hint>
+         <span [hidden]="name.pristine">
+         <span [hidden]="!name.errors?.required">name is required</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button type="submit" mat-button class="background-primary text-floral-white"  [disabled]="typeContactForm.form.invalid" >Crear</button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,25 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+  <div fxFlex>
+    Ver asignación
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex  align="end">
+    <button mat-button mat-dialog-close name="closeX">&times;</button>
+  </div>
+</mat-toolbar>
+<mat-dialog-content>
+  <h3>Empleado:</h3>
+  <mat-card>{{equipmentAssignmentSelected.employeeCode}} - {{equipmentAssignmentSelected.employeeName}}</mat-card>
+  <h3>Equipos asignados:</h3>
+  <mat-divider></mat-divider>
+  <mat-list *ngFor=" let equipmentAssignment of equipmentAssignmentList?.object" >
+    <mat-list-item>{{equipmentAssignment.equipmentName}}</mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close mat-button name= "close" class="background-primary text-floral-white" >Cerrar</button>
+</mat-dialog-actions>
+
+

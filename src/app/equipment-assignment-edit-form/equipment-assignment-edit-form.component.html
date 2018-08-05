@@ -1,0 +1,54 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+  <div fxFlex>
+    Editar asignación
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex  align="end">
+    <button name ="closeX" mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+
+<mat-dialog-content>
+  <h3>Empleado:</h3>
+  <mat-card>{{equipmentAssignmentSelected.employeeCode}}-{{equipmentAssignmentSelected.employeeName}}</mat-card>
+
+  <h3>Lista de Asignaciones</h3>
+  <form novalidate #equipmentAssignmentEditForm="ngForm" (ngSubmit)="update()" *ngIf="isEdited">
+    <mat-dialog-content>
+      <mat-form-field class="example-full-width" dividerColor="{{equipment.invalid && !equipment.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="Equipo" aria-label="Equipo" [(ngModel)]="equipmentAssignmentSelected.equipmentKey"
+               [matAutocomplete]="autoEquipment" name="equipment" #equipment="" required>
+        <mat-autocomplete #autoEquipment="matAutocomplete">
+          <mat-option *ngFor="let equipment of filteredEquipment | async" [value]="equipment.equipmentKey">
+            <span>{{equipment.name}}</span> |
+            <small>Code: {{equipment.code}}</small>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Observaciones" [(ngModel)]="equipmentAssignmentSelected.observations" name="observations"></textarea>
+      </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <button type="submit" mat-button class="background-primary text-floral-white" name="actualizar"  [disabled]="equipmentAssignmentEditForm.form.invalid" >Actualizar</button>
+    </mat-dialog-actions>
+  </form>
+  <div fxLayout="column" fxlayout.gt-sm="row" *ngIf="!isEdited">
+    <div fxFlex="50">
+      <mat-list>
+        <mat-list-item name="assignmentsList" *ngFor=" let equipmentAssignment of equipmentAssignments['object']">
+
+          <h3 mat-line>{{equipmentAssignment.equipmentCode}} - {{equipmentAssignment.equipmentName}} </h3>
+          <a *ngIf="!toDelete" mat-button (click)="setEditEquipmentAssignment(equipmentAssignment)" name="edit"><h2 class="fa fa-pencil-square fa-lg"></h2></a>
+          <a *ngIf="toDelete" mat-button (click)="openConfirmDialog(equipmentAssignment)" name="confirm_delete"><h2 class="fa fa-trash fa-lg"></h2></a>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close mat-button name="closeEdit" class="background-primary text-floral-white" >Cerrar</button>
+</mat-dialog-actions>

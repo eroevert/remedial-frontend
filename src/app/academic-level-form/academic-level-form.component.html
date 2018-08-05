@@ -1,0 +1,29 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+  <div fxFlex>
+    Crear  Nivel Academico
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex  align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+
+<form novalidate #academicLevelForm="ngForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <p>
+      <mat-input-container dividerColor="{{description.invalid && !description.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="Descripcion" type="text" [(ngModel)]="academicLevel.description" name="description" #description="ngModel" required>
+        <mat-hint>
+         <span [hidden]="description.pristine">
+         <span [hidden]="!description.errors?.required">name is required</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button type="submit" mat-button class="background-primary text-floral-white"  [disabled]="academicLevelForm.form.invalid" >Crear</button>
+  </mat-dialog-actions>
+</form>

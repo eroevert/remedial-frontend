@@ -1,0 +1,34 @@
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+
+
+  <div fxFlex>
+    <div>
+      <h3 mat-line align="center"> Tipos de Equipos de Seguridad</h3>
+      <hr>
+    </div>
+
+    <span class="flex-spacer"></span>
+    <a id="Nuevo_Tipo_Equipo" mat-button (click)="openNewEquipmentTypeForm()" name ="new_register"><h2 class="fa fa-pencil fa-lg"> Nuevo Registro</h2></a>
+    <div fxLayout="column" fxlayout.gt-sm="row">
+      <div fxFlex="50">
+        <mat-list>
+          <mat-list-item id="lista" *ngFor=" let equipmentType of equipmentTypes">
+
+            <h3 mat-line>{{equipmentType.name}} </h3>
+            <a mat-button (click)="openViewForm(equipmentType)" name="view"><h2 class="fa fa-eye fa-lg"></h2></a>
+            <a mat-button (click)="openEditForm(equipmentType)"><h2 class="fa fa-pencil-square fa-lg"></h2></a>
+            <a mat-button (click)="deleteEquipmentType(equipmentType.equipmentTypeKey)"><h2 class="fa fa-trash fa-lg"></h2></a>
+
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+    </div>
+  </div>
+
+</div>

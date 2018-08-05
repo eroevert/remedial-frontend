@@ -1,0 +1,17 @@
+<form novalidate #documenttyepForm="ngForm" (ngSubmit)="create()">
+
+  <div hidden="true">
+    <input matInput placeholder="id" [(ngModel)]="documenttype.documentTypeKey" name="documentTypeKey">
+  </div>
+
+
+  <input matInput placeholder="name" [(ngModel)]="documenttype.name" name="name" value="0">
+
+
+  <input matInput placeholder="status" [(ngModel)]="documenttype.status" name="status">
+
+  <input matInput placeholder="repeat" [(ngModel)]="documenttype.repeat" name="repeat">
+
+  <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
+
+</form>

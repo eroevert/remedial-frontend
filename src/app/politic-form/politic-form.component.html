@@ -1,0 +1,45 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+  <div fxFlex>
+    Crear Politica
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex  align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+
+<form novalidate #politicForm="ngForm" (ngSubmit)="create()">
+  <mat-dialog-content>
+    <mat-list-item>
+      <mat-input-container>
+        <input matInput placeholder="Politica" type="text" [(ngModel)]="politic.politicsName" name="politicsName"
+               required #politicsName="ngModel">
+      </mat-input-container>
+    </mat-list-item>
+    <br>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Descripcion" [(ngModel)]="politic.politicsDesc" name="politicsDesc"></textarea>
+    </mat-form-field>
+    <br>
+    <div class="rkmd-checkbox checkbox-ripple" *ngFor=" let organization of organizations">
+      <label class="input-checkbox checkbox-lightBlue">
+        <input type="checkbox" id="{{organization.organizationKey}}" [checked]="organization.checked" (change)="onChkChange(organization)">
+        <span class="checkbox"></span>
+      </label>
+      <label for="{{organization.organizationKey}}" class="label">{{organization.name}}</label>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button type="submit" mat-button class="background-primary text-floral-white"  [disabled]="politicForm.form.invalid" >Crear</button>
+  </mat-dialog-actions>
+  <legend>Lista de Personal a enviar Notification</legend>
+  <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor=" let employee of employees">
+      {{employee.firstName}} - {{employee.lastName}}
+      <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</form>
+

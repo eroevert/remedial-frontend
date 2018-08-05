@@ -1,0 +1,9 @@
+<mat-card>
+  <div class="container" tabindex="0" (keydown)="onKeyDown($event)">
+    <mat-radio-group class="radio-group" [(ngModel)]="status">
+      <mat-radio-button class="radio-button" *ngFor="let state of states" [value]="state.value">
+        {{state.value}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+</mat-card>

@@ -1,0 +1,53 @@
+
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+  <div fxFlex>
+    Editar registro de equipo
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex  align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+<form novalidate #equipmentEditForm="ngForm" (ngSubmit)="update()">
+<mat-dialog-content>
+  <p>
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Equipo o Indumentaria" [(ngModel)]="equipmentSelected.name" name="name"></textarea>
+  </mat-form-field>
+  </p>
+  <p>
+    <mat-input-container dividerColor="{{description.invalid && !description.pristine ? 'warn' : 'primary'}}" required>
+      <mat-select placeholder="Tipo de Equipo" [(ngModel)]="equipmentSelected.equipmentTypeKey" name="equipmentTypeKey">
+        <mat-option *ngFor="let tipos of equipmentTypes" [value]="tipos.equipmentTypeKey">
+          {{tipos.name}}
+        </mat-option>
+      </mat-select>
+    </mat-input-container>
+  </p>
+  <p>
+    <mat-input-container dividerColor="{{status.invalid && !description.pristine ? 'warn' : 'primary'}}">
+      <mat-select placeholder="Estado del Equipo" [(ngModel)]="equipmentSelected.status" name="status" #status="ngModel">
+        <mat-option value="habilitado">Habilitado</mat-option>
+        <mat-option value="deshabilitado">Deshabilitado</mat-option>
+      </mat-select>
+    </mat-input-container>
+  </p>
+  <p>
+    <mat-input-container dividerColor="{{description.invalid && !description.pristine ? 'warn' : 'primary'}}">
+        <textarea matInput placeholder="Descripci&oacute;n" [(ngModel)]="equipmentSelected.description" name="description" #description="ngModel" >
+        </textarea>
+      <mat-hint>
+         <span [hidden]="description.pristine">
+         </span>
+      </mat-hint>
+    </mat-input-container>
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="submit" mat-button class="background-primary text-floral-white"  [disabled]="equipmentEditForm.form.invalid" >Actualizar</button>
+</mat-dialog-actions>
+</form>
+<mat-dialog-actions>
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close mat-button class="background-primary text-floral-white" >Cerrar</button>
+</mat-dialog-actions>

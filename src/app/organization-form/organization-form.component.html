@@ -1,0 +1,81 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+  <div fxFlex>
+    Crear Area
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+
+<form novalidate #organizationForm="ngForm" (ngSubmit)="onSubmit()" name="newOrganizationForm">
+  <mat-dialog-content>
+    <input hidden matInput placeholder="lastname" [(ngModel)]="organization.idPadre"
+           [ngModelOptions]="{standalone: true}">
+    <p>
+      <mat-input-container dividerColor="{{name.invalid && !name.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="name" type="text" [(ngModel)]="organization.name" name="name" #name="ngModel"
+               required>
+        <mat-hint>
+         <span [hidden]="name.pristine">
+         <span [hidden]="!name.errors?.required">name is required</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+      <mat-input-container dividerColor="{{description.invalid && !description.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="description" type="text" [(ngModel)]="organization.description" name="description"
+               #description="ngModel" required>
+        <mat-hint>
+         <span [hidden]="description.pristine">
+         <span [hidden]="!description.errors?.required">description is required</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+      <mat-input-container dividerColor="{{gestion.invalid && !gestion.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="gestion" type="number" [(ngModel)]="organization.gestion" name="gestion"
+               #gestion="ngModel" required>
+        <mat-hint>
+         <span [hidden]="gestion.pristine">
+         <span [hidden]="!gestion.errors?.required">gestion is required</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+      <mat-input-container dividerColor="{{code.invalid && !code.pristine ? 'warn' : 'primary'}}">
+        <input matInput placeholder="code" type="text" [(ngModel)]="organization.code" name="code" #code="ngModel"
+               required>
+        <mat-hint>
+         <span [hidden]="code.pristine">
+         <span [hidden]="!code.errors?.required">code is required</span>
+         </span>
+        </mat-hint>
+      </mat-input-container>
+      <mat-input-container>
+        <input matInput placeholder="Inicio" [matDatepicker]="start" [(ngModel)]="organization.start" name="start"
+               #start="ngModel" required>
+        <mat-datepicker-toggle id="btn_date_picket_start" name="btn_date_picket_start" matSuffix [for]="start"></mat-datepicker-toggle>
+        <mat-datepicker #start></mat-datepicker>
+      </mat-input-container>
+      <mat-input-container>
+        <input matInput placeholder="Fin" [matDatepicker]="end" [(ngModel)]="organization.end" name="end" #end="ngModel"
+               required>
+        <mat-datepicker-toggle id="btn_date_picket_end" name="btn_date_picket_end" matSuffix [for]="end"></mat-datepicker-toggle>
+        <mat-datepicker #end></mat-datepicker>
+      </mat-input-container>
+      <mat-input-container dividerColor="{{gestion.invalid && !gestion.pristine ? 'warn' : 'primary'}}">
+        <mat-select placeholder="Nivel Jerarquico" [(ngModel)]="organization.hierarchicalLevelKey"
+                    name="hierarchicalLevelKey">
+          <mat-option *ngFor="let level of hierarchicalLevels" [value]="level.hierarchicalLevelKey">
+            {{level.name}}
+          </mat-option>
+        </mat-select>
+      </mat-input-container>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button name="cancelNewOrganization" mat-button mat-dialog-close>Cancelar</button>
+    <button name="saveNewOrganization" type="submit" mat-button class="background-primary text-floral-white"
+            [disabled]="organizationForm.form.invalid">Crear
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,15 @@
+
+<div layout="row" layout-align="center center">
+  <div>
+    <h3 mat-line align="center"> {{title}}</h3>
+    <hr>
+  </div>
+
+  <span class="flex-spacer"></span>
+  <div layout="row" layout-align="center end">
+    <ag-grid-angular style="width: 90%; height: 450px; margin: 20px 50px;" class="ag-theme-blue" [rowData]="rowData | async"
+                     [gridOptions]="gridOptions" >
+    </ag-grid-angular>
+  </div>
+</div>
+

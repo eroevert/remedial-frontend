@@ -1,0 +1,12 @@
+<h2>lista de tipo de documentos</h2>
+<a mat-button [routerLink]="['/documenttypes/form']"><h2 class="fa fa-user-circle fa-lg"> Nuevo documenttype</h2></a>
+<mat-list *ngFor=" let documenttype of documenttypes">
+  <mat-list-item>{{documenttype.documentTypeKey}}
+  {{documenttype.name}}
+  {{documenttype.status}}
+    {{documenttype.repeat}}
+
+  </mat-list-item>
+  <button type="button" name="eliminar" (click)="delete(documenttype)">eliminar</button>
+
+</mat-list>

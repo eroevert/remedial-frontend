@@ -1,0 +1,53 @@
+<!--<div class="container"
+     fxLayout="colum"
+     fxFlexGap="10px">-->
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+
+
+  <div fxFlex="50">
+
+    <div>
+      <h3 mat-line align="center"> Lista de Empleados</h3>
+      <hr>
+    </div>
+
+    <span class="flex-spacer"></span>
+    <button name="new_employee_button" mat-button [routerLink]="['/employees/employeeform']"><h2 class="fa fa-user-circle fa-lg"> Nuevo Empleado</h2>
+    </button>
+    <div fxLayout="column" fxlayout.gt-sm="row">
+      <div fxFlex>
+
+        <mat-list>
+          <mat-list-item *ngFor=" let employee of employees">
+            <!--<img mat-list-avatar src="{{employee.photo}}" alt="{{employee.employeeCode}}">-->
+            <h4 mat-line>{{employee.firstName}} {{employee.lastName}}</h4>
+            <a mat-button (click)="onSelect(employee)" title="Ver Informacion de Empleado"><h2
+              class="fa fa-id-card fa-lg"></h2></a>
+            <a mat-button [routerLink]="['/employees/employeeform',employee.employeeKey]" title="Editar Empleado"><h2
+              class="fa fa-pencil-square fa-lg"></h2></a>
+            <a mat-button (click)="DeleteEmployee(employee.employeeKey)" title="Eliminar Empleado"><h2
+              class="fa fa-trash fa-lg"></h2></a>
+            <a mat-button (click)="openNewAssignment(employee)" title="Asignar Nuevo Item"><h2
+              class="fa fa-cubes fa-lg"></h2></a>
+
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="50" layout-align="top top">
+    <h3 mat-line align="center"> Detalle de Empleados</h3>
+    <hr>
+    <app-employeedetail *ngIf="employeeselec" [employeedata]="employeeselec"
+                        [organizationName]="organizationSelec.name"
+                        [posHistorical]="positionHistorical"
+                        [item]="item"
+    ></app-employeedetail>
+
+  </div>
+</div>

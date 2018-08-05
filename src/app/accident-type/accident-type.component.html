@@ -1,0 +1,14 @@
+<div layout="row" layout-align="center center">
+  <div>
+    <h3 mat-line align="center"> {{title}}</h3>
+    <hr>
+  </div>
+
+  <span class="flex-spacer"></span>
+  <a mat-button (click)="onAddRow()"><h2 class="fa fa-plus fa-lg"> Nuevo</h2></a>
+  <div layout="row" layout-align="center end">
+    <ag-grid-angular style="width: 90%; height: 450px; margin: 20px 50px;" class="ag-theme-blue" [rowData]="rowData | async"
+                     [gridOptions]="gridOptions" (cellValueChanged)="onCellValueChanged($event)" >
+    </ag-grid-angular>
+  </div>
+</div>

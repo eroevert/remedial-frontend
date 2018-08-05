@@ -1,0 +1,33 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+    <div fxFlex>
+        Ver Accidente Registrado
+    </div>
+    <span fxFlex class="flex-spacer"></span>
+    <div fxFlex  align="end">
+      <button id="close" name="close" mat-button mat-dialog-close>&times;</button>
+    </div>
+</mat-toolbar>
+<mat-dialog-content>
+    <h3>Empleado:</h3>
+  <mat-card id="employee" name="employee">{{accident.employeeKey}}</mat-card>
+    <h3>Título:</h3>
+  <mat-card id="title" name="title">{{accident.title}}</mat-card>
+    <h3>Código:</h3>
+  <mat-card id="code" name="code">{{accident.code}}</mat-card>
+    <h3>Nivel de Riesgo: </h3>
+  <mat-card id="levelRisk" name="levelRisk">{{accident.levelRiskId}}</mat-card>
+    <h3>Tipo de Accidente:</h3>
+  <mat-card id="accidentType" name="accidentType">{{accident.accidentTypeKey}}</mat-card>
+    <h3>Fecha de suceso:</h3>
+  <mat-card id="dateEvent" name="dateEvent">{{accident.dateEvent}}</mat-card>
+    <h3>Descripcion:</h3>
+  <mat-card id="description" name="description">{{accident.describeIssue}}</mat-card>
+    <h3>Estado:</h3>
+  <mat-card id="status" name="status">{{accident.status}}</mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <span class="flex-spacer"></span>
+  <button id="cerrar" name="cerrar" mat-button mat-dialog-close mat-button class="background-primary text-floral-white">
+    Cerrar
+  </button>
+</mat-dialog-actions>

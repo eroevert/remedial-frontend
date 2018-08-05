@@ -1,0 +1,58 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+  <div fxFlex>
+    Login
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex align="end">
+    <button mat-button mat-dialog-close name="close_login_button">&times;</button>
+  </div>
+</mat-toolbar>
+<div *ngIf="!verifyLogin()">
+  <mat-dialog-content>
+    <h2>{{user.userName}}</h2>
+    <h3>{{user.rolByRolKey.description}}</h3>
+    <h4>{{user.employeeByEmployeeKey.firstName}} {{user.employeeByEmployeeKey.lastName}}</h4>
+    <!--<h4>{{user.organizationByOrganizationKey.name}}</h4>-->
+  </mat-dialog-content>
+  <mat-dialog-actions>
+  <span class="flex-spacer"></span>
+  <button name="logout_button" type="submit" (click)="logOut()" mat-button class="background-primary text-floral-white">Logout</button>
+  </mat-dialog-actions>
+</div>
+<div *ngIf="verifyLogin()">
+  <label *ngIf="usernameAlert" class="login_alert">{{usernameAlert}}</label>
+  <form novalidate #loginForm="ngForm" (ngSubmit)="addPost()">
+    <mat-dialog-content>
+      <p>
+        <mat-input-container dividerColor="{{username.invalid && !username.pristine?'warn':'primary'}}">
+          <input matInput [(ngModel)]="user.userName"
+                 type="text"
+                 placeholder="Username" name="username" #username="ngModel" required>
+          <mat-hint>
+          <span [hidden]="username.pristine">
+            <span [hidden]="!username.errors?.required">username is required</span>
+          </span>
+          </mat-hint>
+        </mat-input-container>
+        <mat-input-container dividerColor="{{password.invalid && !password.pristine ? 'warn' : 'primary'}}">
+          <input matInput [(ngModel)]="user.password"
+                 type="password"
+                 placeholder="Password" name="password" #password="ngModel" required>
+          <mat-hint>
+          <span [hidden]="password.pristine">
+            <span [hidden]="!password.errors?.required">password is required</span>
+          </span>
+          </mat-hint>
+        </mat-input-container>
+        <mat-checkbox [(ngModel)]="user.remember" name="remember" color="primary">Remember me</mat-checkbox>
+      </p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <span class="flex-spacer"></span>
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button type="submit" mat-button class="background-primary text-floral-white"
+              [disabled]="loginForm.form.invalid"  name="accept_login_button" id="login">Login
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>

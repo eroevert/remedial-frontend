@@ -1,0 +1,110 @@
+<mat-card>
+  <mat-card-header><h3>Datos Personales</h3></mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <label class="labels">Nombre y Aplellido: </label>
+        <p>{{employeedata.firstName}} {{employeedata.firstName}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <label class="labels">Codigo de Empleado: </label>
+        <p>{{employeedata.employeeCode}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <label class="labels">Fecha de Nacimiento: </label>
+        <p>{{employeedata.birthDate| date:"MM/dd/yyyy"}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <label class="labels">Genero: </label>
+        <p *ngIf="employeedata.gender == 'M'">Masculino</p>
+        <p *ngIf="employeedata.gender !== 'M'">Femenino</p>
+
+      </mat-list-item>
+      <mat-list-item>
+        <label class="labels">Nacionalidad: </label>
+        <p>{{employeedata.nationality}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <label class="labels">Estado: </label>
+        <div *ngIf="employeedata.status== '1'; then thenTemplateName; else elseTemplateName"></div>
+        <ng-template #thenTemplateName>
+          <p>Activo</p>
+        </ng-template>
+        <ng-template #elseTemplateName>
+          <p>Inactivo</p>
+        </ng-template>
+      </mat-list-item>
+
+      <mat-list-item>
+        <label class="labels">Fecha de Registro: </label>
+        <p>{{employeedata.registrationDate| date:"MM/dd/yyyy"}}</p>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-header>
+    <h3>Datos Laborales</h3>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <label class="labels"> Departamento Actual:</label>
+        <p>{{organizationName}}</p>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-header>
+    <h3>Asignacion Item Laboral</h3>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list list-item *ngFor="let ph of posHistorical">
+      <mat-list-item>
+        <label class="labels"> <h2 style="width: 100%">{{ph.itemByItemKey.positionByPositionKey.name}}</h2></label>
+      </mat-list-item>
+      <mat-list-item>
+        <label class="labels"> Numero de Memorandum de Asignacion:</label>
+        <p>{{ph.memoNumber}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <label class="labels"> Fecha de Asignacion:</label>
+        <p>{{ph.approvalDate| date:"MM/dd/yyyy"}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <label class="labels"> Estado:</label>
+        <div *ngIf="ph.status == '1'; then thenTemplateName; else elseTemplateName"></div>
+        <ng-template #thenTemplateName>
+          <p>Activo</p>
+        </ng-template>
+        <ng-template #elseTemplateName>
+          <p>Inactivo</p>
+        </ng-template>
+      </mat-list-item>
+      <mat-card-footer>
+        <mat-list-item>
+          <a mat-button (click)="openEditPositionalHist(employeedata)"><h2 class="fa fa-pencil-square fa-lg"></h2></a>
+          <a mat-button (click)="eliminarPosicionaleHistorical(ph)"><h2 class="fa fa-trash fa-lg"></h2></a>
+        </mat-list-item>
+        <hr>
+      </mat-card-footer>
+
+    </mat-list>
+  </mat-card-content>
+
+</mat-card>
+
+<!--
+  <mat-list>
+    <mat-list-item *ngFor="let ph of posHistorical">
+      Item Key: {{ph.itemKey}}
+      employee Key: {{ph.employeeKey}}
+      Memo Number: {{ph.memoNumber}}
+      Aprobal date: {{ph.approvalDate}}
+      Resposable Key: {{ph.responsibleKey}}
+      Start: {{ph.start}}
+      Status: {{ph.status}}
+    </mat-list-item>
+  </mat-list>
+-->

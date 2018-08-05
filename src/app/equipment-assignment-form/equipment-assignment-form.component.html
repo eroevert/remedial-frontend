@@ -1,0 +1,48 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary" id="Assignation_equips">
+  <div fxFlex>
+    Asignar equipo
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex  align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+
+<form novalidate #equipmentAssignmentForm="ngForm" (ngSubmit)="create()">
+  <mat-dialog-content>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Empleado" aria-label="Empleado" [(ngModel)]="equipmentAssignment.employeeKey"
+             [matAutocomplete]="autoEmployee" name="employee" required>
+      <mat-autocomplete #autoEmployee="matAutocomplete">
+        <mat-option *ngFor="let employee of filteredEmployee | async" [value]="employee.employeeKey">
+          <span>{{employee.firstName}}</span> |
+          <small>Code: {{employee.employeeCode}}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Equipo" aria-label="Equipo" [(ngModel)]="equipmentAssignment.equipmentKey"
+             [matAutocomplete]="autoEquipment" name="equipment" required>
+      <mat-autocomplete #autoEquipment="matAutocomplete">
+        <mat-option *ngFor="let equipment of filteredEquipment | async" [value]="equipment.equipmentKey">
+          <span>{{equipment.name}}</span> |
+          <small>Code: {{equipment.code}}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Observaciones" [(ngModel)]="equipmentAssignment.observations" name="observations"></textarea>
+    </mat-form-field>
+    <br>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button name = "cancel" mat-button mat-dialog-close>Cancelar</button>
+    <button name ="save" id = "save" type="submit" mat-button class="background-primary text-floral-white"  [disabled]="equipmentAssignmentForm.form.invalid" >Crear</button>
+
+
+  </mat-dialog-actions>
+</form>
+

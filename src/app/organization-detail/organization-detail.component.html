@@ -1,0 +1,68 @@
+
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+  <div fxFlex>
+    <div fxFlex *ngIf="organization">
+      <h1 *ngIf="organization.status!='1'" style="color: #900000; text-align: right;">AREA DADA DE BAJA</h1>
+      <mat-card>
+        <mat-card-title-group>
+          <mat-card-title>
+            <h3>{{organization.name | uppercase}}</h3>
+            <h4>{{organization.code}}</h4>
+          </mat-card-title>
+        </mat-card-title-group>
+        <mat-card-content>
+          <label>Description:</label>
+          <h4>{{organization.description}}</h4>
+          <label>Nivel Gerarquico: <h4>{{organization.hierarchicalLevelByHierarchicalLevelKey.name}}</h4></label>
+          <label>Fecha Inicio: <h4>{{organization.start}}</h4></label>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div *ngIf="organization">
+      <span class="flex-spacer"></span>
+      <h4>Items</h4>
+      <button name="newItem_button" *ngIf="organization.status=='1'" mat-button (click)="openNewItemForm()"><h2 class="fa fa-user-circle fa-lg"> Nuevo Item</h2></button>
+      <div fxLayout="column" fxlayout.gt-sm="row">
+        <div fxFlex="50">
+          <mat-list>
+            <mat-list-item *ngFor=" let item of items">
+              <img mat-list-avatar src="../../assets/images/organization_icon.png" alt="{{item.code}}">
+              <h3 mat-line>{{item.code}}</h3>
+              <a name="del_item_{{item.itemKey}}" mat-button (click)="DeleteItem(item.itemKey)"><h2 class="fa fa-trash fa-lg"></h2></a>
+              <h3 mat-line>{{item.typeContractByTypeContractKey.name}} - {{item.positionByPositionKey.name}}</h3>
+              <h3 mat-line> {{item.salaryScaleBySalaryScaleKey.currencyByCurrencyKey.code}} {{item.salaryScaleBySalaryScaleKey.basicSalary}}</h3>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+    </div>
+    <span class="flex-spacer"></span>
+    <h4  *ngIf="organization">Areas Dependientes</h4>
+    <div *ngIf="!organization">
+      <h3 mat-line align="center"> Lista de Areas</h3>
+      <hr>
+    </div>
+    <button name="newOrganization_button" *ngIf="organization && organization.status=='1'" mat-button (click)="openNewOrganizationForm()"><h2 class="fa fa-user-circle fa-lg"> Nueva Area</h2></button>
+    <div fxLayout="column" fxlayout.gt-sm="row">
+      <div fxFlex="50">
+        <mat-list>
+          <mat-list-item *ngFor=" let children of childs">
+            <img mat-list-avatar src="../../assets/images/organization_icon.png" alt="{{children.code}}"  name="org_element_{{children.organizationKey}}">
+            <h3 mat-line>{{children.name}} - Codigo: {{children.code}}</h3>
+            <button mat-button (click)="OpenOrganizationDetail(children.organizationKey)" name="org_{{children.organizationKey}}"><h2 class="fa fa-eye fa-lg"></h2></button>
+            <a name="del_org_{{children.organizationKey}}" mat-button (click)="DeleteOrganization(children.organizationKey)"><h2 class="fa fa-trash fa-lg"></h2></a>
+            <h3 mat-line>Nivel Gerarquico: {{children.hierarchicalLevelByHierarchicalLevelKey.name}}</h3>
+            <h3 *ngIf="children.status==='1'" mat-line>Estado: Activo</h3>
+            <h3 *ngIf="children.status!=='1'" mat-line class="inactive_element">Estado: Inactivo</h3>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+  </div>
+</div>

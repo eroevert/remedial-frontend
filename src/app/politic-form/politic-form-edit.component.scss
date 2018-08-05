@@ -1,0 +1,21 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+.mat-form-field {
+  display: block;
+  position: relative;
+  text-align: left;
+}
+.mat-toolbar.mat-primary {
+  background: #DD2C00;
+  color: #fff;
+}
+
+.background-primary {
+  background-color: #DD2C00 !important;
+}

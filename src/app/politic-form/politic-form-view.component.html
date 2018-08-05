@@ -1,0 +1,23 @@
+<mat-toolbar fxLayout="row" mat-dialog-title color="primary">
+  <div fxFlex>
+    <span *ngIf="!modeDelete">Ver Politica</span>
+    <span *ngIf="modeDelete">Eliminar Politica</span>
+  </div>
+  <span fxFlex class="flex-spacer"></span>
+  <div fxFlex  align="end">
+    <button mat-button mat-dialog-close>&times;</button>
+  </div>
+</mat-toolbar>
+<mat-dialog-content>
+  <h3>Politica:</h3>
+  <mat-card>{{politic.politicsName}}</mat-card>
+  <h5>Descripcion:</h5>
+  <mat-card>{{politic.politicsDesc}}</mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <span class="flex-spacer"></span>
+  <button mat-button (click)="delete(politic)" class="background-primary text-floral-white" *ngIf="modeDelete"><h2 class="fa fa-trash fa-lg"></h2></button>
+  <button mat-button mat-dialog-close class="background-primary text-floral-white" *ngIf="!modeDelete">Cerrar</button>
+</mat-dialog-actions>
+
+

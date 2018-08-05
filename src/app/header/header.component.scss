@@ -1,0 +1,100 @@
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.container {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+}
+.tab {
+  display: inline-block;
+  float: left;
+  background: #FFFFFF;
+  padding: 10px;
+  min-width: 125px;
+  text-align: center;
+}
+.tab:hover {
+  cursor: pointer;
+}
+.tab:hover .tab__header {
+  color: #00B386;
+}
+.tab__header {
+  display: inline-block;
+  font-weight: 300;
+  margin: 0;
+  color: #7B8994;
+}
+.tab--selected .tab__header {
+  text-decoration: underline;
+  text-decoration-style: 1.5pt solid black;
+  font-weight: 700;
+  color: #00B386;
+}
+.badge::after {
+  content: attr(data-num);
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  right: 0;
+  background: #6cacd3;
+  color: #FFFFFF;
+  font-size: 11px;
+  padding: 4px 2px;
+  border-radius: 100%;
+  min-width: 26px;
+  line-height: 18px;
+  margin-left: 5px;
+  vertical-align: middle;
+  text-align: center;
+  background: attr(data-badge_bg);
+}
+.badge--completed::after {
+  background: #66cdaa;
+}
+.badge--rejected::after {
+  background: #bf548c;
+}
+.badge--in-progress::after {
+  background: #6495ed;
+}
+.badge--pending::after {
+  background: #7480ba;
+}
+.badge--all::after {
+  background: #6cacd3;
+}
+.icon {
+  padding: 20px;
+  font-size: 24pt;
+  cursor: pointer;
+}
+.badge-square {
+  padding: 20px;
+  box-sizing: border-box;
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  top: -13px;
+  transform: translateX(-70%);
+  background: #6495ed;
+  font-size: 9pt;
+  border-radius: 4px;
+  background: #7B8994;
+  color: #FFFFFF;
+  font-size: 11px;
+  padding: 4px 2px;
+  min-width: 26px;
+  line-height: 18px;
+  margin-left: 5px;
+  vertical-align: middle;
+  text-align: center;
+}

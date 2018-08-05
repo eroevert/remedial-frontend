@@ -1,0 +1,191 @@
+<form novalidate #employeetForm="ngForm">
+  <mat-card>
+    <mat-card-header>
+      <h3>{{titulo}}</h3>
+    </mat-card-header>
+
+    <mat-list>
+
+      <input matInput placeholder="employeeKey" type="number" [(ngModel)]="employee.employeeKey"
+             name=" employeeKey" hidden [value]="employee.employeeKey">
+      <input matInput placeholder="photo" type="text" [(ngModel)]="employee.photo" name="photo" hidden>
+        <mat-list-item>
+          <label class="labels">
+            Codigo organizacion:
+          </label>
+          <mat-input-container
+            dividerColor="{{organizationKey.invalid && !organizationKey.pristine ? 'warn' : 'primary'}}">
+            <mat-select placeholder="Organizacion" [(ngModel)]="employee.organizationKey" name="organizationKey"
+                        #organizationKey="ngModel">
+              <mat-option *ngFor="let organization of organizations" [value]="organization.organizationKey">
+                {{organization.name}}
+              </mat-option>
+            </mat-select>
+            <mat-hint>
+         <span [hidden]="organizationKey.pristine">
+         <span [hidden]="!organizationKey.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+            </mat-hint>
+          </mat-input-container>
+        </mat-list-item>
+
+
+      <mat-list-item>
+          <label class="labels">
+            Codigo de empleado:
+          </label>
+        <mat-input-container
+          dividerColor="{{employeeCode.invalid && !employeeCode.pristine ? 'warn' : 'primary'}}">
+          <input matInput placeholder="employeeCode" type="text" [(ngModel)]="employee.employeeCode" name="employeeCode"
+                 required #employeeCode="ngModel">
+          <mat-hint>
+         <span [hidden]="employeeCode.pristine">
+         <span [hidden]="!employeeCode.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+          </mat-hint>
+        </mat-input-container>
+      </mat-list-item>
+      <mat-list-item>
+          <label class="labels">
+            Nombres:
+          </label>
+        <mat-input-container
+          dividerColor="{{firstName.invalid && !firstName.pristine ? 'warn' : 'primary'}}">
+          <input matInput placeholder="firstName" type="text" [(ngModel)]="employee.firstName" name="firstName"
+                 required #firstName="ngModel">
+          <mat-hint>
+         <span [hidden]="firstName.pristine">
+         <span [hidden]="!firstName.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+          </mat-hint>
+        </mat-input-container>
+      </mat-list-item>
+      <mat-list-item>
+          <label class="labels">
+            Apellidos:
+          </label>
+        <mat-input-container
+          dividerColor="{{lastName.invalid && !lastName.pristine ? 'warn' : 'primary'}}">
+
+          <input matInput placeholder="lastName" type="text" [(ngModel)]="employee.lastName" name="lastName" required
+                 #lastName="ngModel">
+          <mat-hint>
+         <span [hidden]="lastName.pristine">
+         <span [hidden]="!lastName.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+          </mat-hint>
+        </mat-input-container>
+      </mat-list-item>
+      <mat-list-item>
+
+        <label class="labels">
+            Fecha de Nacimiento:
+          </label>
+        <mat-input-container
+          dividerColor="{{birthDate.invalid && !birthDate.pristine ? 'warn' : 'primary'}}">
+
+          <input matInput placeholder="birthDate" type="date" [(ngModel)]="employee.birthDate" name="birthDate"
+                 required #birthDate="ngModel">
+          <mat-hint>
+         <span [hidden]="birthDate.pristine">
+         <span [hidden]="!birthDate.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+          </mat-hint>
+        </mat-input-container>
+      </mat-list-item>
+        <mat-list-item>
+          <label class="labels">
+            Genero:
+          </label>
+          <mat-input-container
+            dividerColor="{{gender.invalid && !gender.pristine ? 'warn' : 'primary'}}">
+            <mat-select placeholder=" Genero" [(ngModel)]="employee.gender" name="gender" required #gender="ngModel">
+              <mat-option *ngFor="let gen of genderlist" [value]="gen.codigo">
+                {{gen.nombre}}
+              </mat-option>
+            </mat-select>
+            <mat-hint>
+         <span [hidden]="gender.pristine">
+         <span [hidden]="!gender.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+            </mat-hint>
+          </mat-input-container>
+        </mat-list-item>
+        <mat-list-item>
+          <label class="labels">
+            Nacionalidad:
+          </label>
+          <mat-input-container
+            dividerColor="{{nationality.invalid && !nationality.pristine ? 'warn' : 'primary'}}">
+            <input matInput placeholder="nationality" type="text" [(ngModel)]="employee.nationality" name="nationality"
+                   required #nationality="ngModel">
+            <mat-hint>
+         <span [hidden]="nationality.pristine">
+         <span [hidden]="!nationality.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+            </mat-hint>
+          </mat-input-container>
+        </mat-list-item>
+        <mat-list-item>
+          <label class="labels">
+            Fecha de Admision
+          </label>
+          <mat-input-container>
+            <input matInput placeholder="admisionDate" type="date" [(ngModel)]="employee.admissionDate" name="admisionDate"
+            >
+          </mat-input-container>
+        </mat-list-item>
+        <mat-list-item>
+          <label class="labels">
+            estado
+          </label>
+          <mat-input-container
+            dividerColor="{{status.invalid && !status.pristine ? 'warn' : 'primary'}}">
+            <mat-select placeholder=" Estado" [(ngModel)]="employee.status" name="status" required #status="ngModel">
+              <mat-option *ngFor="let est of statuslist" [value]="est.codigo">
+                {{est.nombre}}
+              </mat-option>
+            </mat-select>
+            <mat-hint>
+         <span [hidden]="status.pristine">
+         <span [hidden]="!status.errors?.required">(Este campo es obligatorio)</span>
+         </span>
+            </mat-hint>
+          </mat-input-container>
+        </mat-list-item>
+
+        <mat-list-item>
+          <label class="labels">
+            Fecha de Registro
+          </label>
+          <mat-input-container>
+            <input matInput placeholder="registrationDate" type="date" [(ngModel)]="employee.registrationDate"
+                   name="registrationDate">
+          </mat-input-container>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-dialog-actions>
+            <span class="flex-spacer"></span>
+
+            <button type="button" mat-button (click)="back()">Cancelar</button>
+            <button name ="save_employee_btn" type="button" mat-button class="background-primary text-floral-white"
+                    [disabled]="employeetForm.form.invalid" (click)="create()"
+                    *ngIf="!employee.employeeKey else elseblock">Guardar
+            </button>
+            <ng-template #elseblock>
+              <button type="button" mat-button class="background-primary text-floral-white"
+                      [disabled]="employeetForm.form.invalid" (click)="actualizarEmployee()">Actualizar
+              </button>
+            </ng-template>
+          </mat-dialog-actions>
+          <!-- <button type="submit" mat-button class="mat-background-primary">Crear</button>
+        -->
+        </mat-list-item>
+
+
+    </mat-list>
+
+  </mat-card>
+</form>
+
